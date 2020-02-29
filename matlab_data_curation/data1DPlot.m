@@ -10,25 +10,36 @@ s = height(data);
 data1 = [];
 data2 = [];
 
+data3 = [];
+data4 = [];
 % DO THE SAME FOR FALSE MISMATCHES
 
 for i = 1:s
-	if data.output{i} == "TRUE" & data.test{i} == "TRUE"
+	if data.output{i} == "TRUE" & data.predict{i} == "TRUE"
 		data1 = [data1 data.(feature)(i)];
 	end
-	if data.output{i} == "TRUE" & data.test{i} == "FALSE"
+	if data.output{i} == "TRUE" & data.predict{i} == "FALSE"
 		data2 = [data2 data.(feature)(i)];
+	end
+end
+
+for i = 1:s
+	if data.output{i} == "FALSE" & data.predict{i} == "TRUE"
+		data3 = [data3 data.(feature)(i)];
+	end
+	if data.output{i} == "FALSE" & data.predict{i} == "FALSE"
+		data4 = [data4 data.(feature)(i)];
 	end
 end
 
 % DISTRIBUTION FOR NON-BASE FEATURES
 
 edges = [0 0.26 0.51 0.76 1.0];
-h = histogram(data1, edges, 'Normalization', 'probability'); % data1 = red
-h.FaceColor = [1 0 0];
+h1 = histogram(data1, edges, 'Normalization', 'probability'); % data1 = red
+h1.FaceColor = [1 0 0];
 hold on
-h = histogram(data2, edges, 'Normalization', 'probability'); % data2 = blue
-h.FaceColor = [0 0 1];
+h1 = histogram(data2, edges, 'Normalization', 'probability'); % data2 = blue
+h1.FaceColor = [0 0 1];
 grid on;
 
 t = char(feature);
@@ -42,4 +53,26 @@ legend('Predicted True/True','Predicted False/True')
 xticks([.13 .375 .635 .88])
 set(gca,'xticklabel',{'A','T','C', 'G'});
 hold off
-saveas(h, "../features/" + feature + ".png");
+saveas(h1, "../features/true_" + feature + ".png");
+hold off
+
+edges = [0 0.26 0.51 0.76 1.0];
+h2 = histogram(data3, edges, 'Normalization', 'probability'); % data1 = red
+h2.FaceColor = [1 0 0];
+hold on
+h2 = histogram(data4, edges, 'Normalization', 'probability'); % data2 = blue
+h2.FaceColor = [0 0 1];
+grid on;
+
+t = char(feature);
+t(strfind(feature, "_")) = ' ';
+feature = string(t);
+
+title("Distribution of " + feature, 'FontSize', 18);
+xlabel(feature, 'FontSize', 14);
+ylabel('Occurance', 'FontSize', 14);
+legend('Predicted False/True','Predicted False/False')
+xticks([.13 .375 .635 .88])
+set(gca,'xticklabel',{'A','T','C', 'G'});
+hold off
+saveas(h2, "../features/false_" + feature + ".png");

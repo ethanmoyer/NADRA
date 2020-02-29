@@ -17,8 +17,8 @@ l = size(table, 1);
 table = table(randperm(l),:);
 
 % Changes prefix of the file.
-t = char(location);
-t(1:strfind(location, "_")) = '';
+t = char(loc);
+t(1:strfind(loc, "_")) = '';
 loc = string(t);
 
 s = "../data/" + p + "_" + n + "_" + loc;
