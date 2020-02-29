@@ -2,6 +2,8 @@
 
 # Data
 
+All the data preprocessed data used in the analysises are kept in the data directory. All data that is processed by using preprocessing.py is kepts in the processed_data directory.
+
 ## Matlab Pipeline
 
 All of the Matlab code created to curate and cluster data is in the matlab-data-curation directory.
@@ -16,7 +18,7 @@ This function accepts the location of a table (.csv) with equally split true and
 
 # getMismatches.m
 
-This function accepts the location of a resulting table (.csv) from the machine learing algoirthms prefixed with "examine_" and the name of the algorithm (either "SVM_", "RF", or "CNN_"). It creates four arrays contining the different mismatches (true/true, true/false, false/true, and false/false). The result is a new table object (.csv) with the four concatenated together with the prefix 'mismatched_' saved under the ../data/ directory.
+This function accepts the location of a resulting table (.csv) from the machine learing algoirthms prefixed with "examine_" and the name of the algorithm (either "SVM_", "RF_", or "CNN_"). It creates four arrays contining the different mismatches (true/true, true/false, false/true, and false/false). The result is a new table object (.csv) with the four concatenated together with the prefix 'mismatched_' saved under the ../data/ directory.
 
 # generateFeaturePlots.m
 
@@ -30,21 +32,12 @@ This function accepts the location of mismatched tables (.csv) prefixed with 'mi
 
 ## Support Vector Machines (SVMs)
 
-Message
-
-```bash
-$ 
-```
+The svm.py and svm_pca.py scripts are responsible for conducting the SVMs analysis. 
 
 ## Random Forest
-```bash
-$ # macOS
-$ 
-```
 
+The random_forest.py script is responsible for conducting the random forest analysis.
 
 ## Convolution Neural Networks (CNNs)
-```bash
-$ # macOS
-$ 
-```
+
+The cnn.py script is responsible for conducting the CNNs analysis.
