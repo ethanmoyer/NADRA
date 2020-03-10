@@ -4,29 +4,29 @@
 
 All the data preprocessed data used in the analysises are kept in the data directory. All data that is processed by using preprocessing.py is kepts in the processed_data directory.
 
-## Matlab Pipeline
+### Matlab Pipeline
 
 All of the Matlab code created to curate and cluster data is in the matlab-data-curation directory.
 
-### currateData.m
+#### currateData.m
 
 This function accepts the location of a table object (.csv) and creates two arrays of equal size: one contains only true outputs and the other contains only false outputs. The result is a new table object (.csv) with the two concatenated together with the prefix 'split_' saved under the ../data/ directory.
 
-### select_test_data.m
+#### select_test_data.m
 
-This function accepts the location of a table (.csv) with equally split true and false outputs prefixed with "split_", the required number of samples from the table, and the proportion of true samples to include in new sample. The result is a curated table (.csv) prefixed with the proporiton of true samples and the number of samles.
+This function accepts the location of a table (.csv) with equally split true and false outputs prefixed with "split_", the required number of samples from the table, and the proportion of true samples to include in new sample. The result is a curated table (.csv) prefixed with the proporiton of true samples and the number of samples.
 
-### getMismatches.m
+#### getMismatches.m
 
 This function accepts the location of a resulting table (.csv) from the machine learing algoirthms prefixed with "examine_" and the name of the algorithm (either "SVM_", "RF_", or "CNN_"). It creates four arrays contining the different mismatches (true/true, true/false, false/true, and false/false). The result is a new table object (.csv) with the four concatenated together with the prefix 'mismatched_' saved under the ../data/ directory.
 
-### generateFeaturePlots.m
+#### generateFeaturePlots.m
 
 This function accepts the location of a mismatched table (.csv) prefixed with 'mismatched_' and calls data1DPlot based on the feature set of the table, generating mismatched distributions for each feature.
 
-### data1DPlot.m
+#### data1DPlot.m
 
-This function accepts the location of mismatched tables (.csv) prefixed with 'mismatched_' and a feature from the data set and plots the distrubition of the feature across both true mismatches and false mismatches.
+This function accepts the location of mismatched tables (.csv) prefixed with 'mismatched_' and a feature from the data set and plots the distrubition of the feature across both true mismatches and false mismatches. These plots are saved to the ../feature/ directory prefixed with the technique used, whether it's mapping true or false, and the name of the feature.
 
 ## Data preprocessing
 
@@ -34,7 +34,7 @@ The processing.py script prompts the user for the location of both the training 
 
 ## Machine Learning/Neural Netowork Solutions
 
-## Required installations
+#### Required installations
 
 Run this command to install sklearn.
 ```bash
@@ -49,7 +49,7 @@ Run this command to install numpy.
 ```bash
 $ pip install numpy
 ```
-### Support Vector Machines (SVMs)
+#### Support Vector Machines (SVMs)
 
 The svm.py and svm_pca.py scripts are responsible for conducting the SVMs analysis. 
 
@@ -57,13 +57,13 @@ Both scripts prompt the user for the location of both the training data set and 
 
 In the casse of SVMs 2-component PCA, it will also display a graph of the test data ajusted to 2-components with PCA plotted against the support vector.
 
-### Random Forest
+#### Random Forest
 
 The random_forest.py script is responsible for conducting the random forest analysis.
 
 The script promptd the user for the location of both the training data set and the test data set. The prompt requires that the provided data sets be provided from the processed_data directory and contain the words 'train' and 'test' in them; otherwise, the script will exit.
 
-### Convolution Neural Networks (CNNs)
+#### Convolution Neural Networks (CNNs)
 
 The cnn.py script is responsible for conducting the CNNs analysis.
 
@@ -78,3 +78,8 @@ $ python3.7 cnn.py
 Pyenv might also be a good tool for managing python versions: https://github.com/pyenv/pyenv
 
 The script promptd the user for the location of the training data set, the test data set, and the validation data set. The prompt requires that the provided data sets be provided from the processed_data directory and contain the words 'train' in the trainining data set and the validation data set and 'test' in the test data set; otherwise, the script will exit.
+
+## NEUROMORPHIC SOLUTIONS TO DNA SUBSEQUENCE AND RESTRICTION SITE ANALYSIS REPORT
+
+In the this repository is the write up of the project. This paper gives background to the problem and the avenue by which I went to solve it. Also it explores the alternatives to the machine learning algorithms that were explored as well.
+
