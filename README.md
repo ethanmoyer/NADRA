@@ -67,7 +67,14 @@ The script promptd the user for the location of both the training data set and t
 
 The cnn.py script is responsible for conducting the CNNs analysis.
 
-When executing cnn.py, it's important to first set up tensorflow following this tutorial: 
+Before executing cnn.py, it's important to first set up tensorflow following this tutorial: 
 https://www.tensorflow.org/install/pip
+
+Then when running cnn.py, use Python version 3.7 like the following.
+```bash
+$ python3.7 cnn.py
+```
+
+Pyenv might also be a good tool for managing python versions: https://github.com/pyenv/pyenv
 
 The script promptd the user for the location of the training data set, the test data set, and the validation data set. The prompt requires that the provided data sets be provided from the processed_data directory and contain the words 'train' in the trainining data set and the validation data set and 'test' in the test data set; otherwise, the script will exit.
