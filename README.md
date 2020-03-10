@@ -34,6 +34,21 @@ The processing.py script prompts the user for the location of both the training 
 
 ## Machine Learning/Neural Netowork Solutions
 
+## Required installations
+
+Run this command to install sklearn.
+```bash
+$ pip install sklearn
+```
+Run this command to install pandas.
+```bash
+$ pip install pandas
+```
+
+Run this command to install numpy.
+```bash
+$ pip install numpy
+```
 ### Support Vector Machines (SVMs)
 
 The svm.py and svm_pca.py scripts are responsible for conducting the SVMs analysis. 
@@ -52,4 +67,7 @@ The script promptd the user for the location of both the training data set and t
 
 The cnn.py script is responsible for conducting the CNNs analysis.
 
-The script promptd the user for the location of both the training data set and the test data set. The prompt requires that the provided data sets be provided from the processed_data directory and contain the words 'train' and 'test' in them; otherwise, the script will exit.
+When executing cnn.py, it's important to first set up tensorflow following this tutorial: 
+https://www.tensorflow.org/install/pip
+
+The script promptd the user for the location of the training data set, the test data set, and the validation data set. The prompt requires that the provided data sets be provided from the processed_data directory and contain the words 'train' in the trainining data set and the validation data set and 'test' in the test data set; otherwise, the script will exit.
