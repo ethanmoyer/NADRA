@@ -1,18 +1,20 @@
 % This function accepts the location of mismatched tables (.csv) prefixed
 % with 'mismatched_' and a feature from the data set and plots the
 % distrubition of the feature across both true mismatches and false
-% mismatches.
+% mismatches. These plots are saved to the ../feature/ directory prefixed
+% with the technique used, whether it's mapping true or false, and the
+% feature.
 
 function data1DPlot (location, feature)
 data = readtable(location);
 data = rmmissing(data);
 s = height(data);
+
 data1 = [];
 data2 = [];
 
 data3 = [];
 data4 = [];
-% DO THE SAME FOR FALSE MISMATCHES
 
 for i = 1:s
 	if data.output{i} == "TRUE" & data.predict{i} == "TRUE"
@@ -35,10 +37,12 @@ end
 % DISTRIBUTION FOR NON-BASE FEATURES
 
 edges = [0 0.26 0.51 0.76 1.0];
-h1 = histogram(data1, edges, 'Normalization', 'probability'); % data1 = red
+% data1 = red
+h1 = histogram(data1, edges, 'Normalization', 'probability'); 
 h1.FaceColor = [1 0 0];
 hold on
-h1 = histogram(data2, edges, 'Normalization', 'probability'); % data2 = blue
+% data2 = blue
+h1 = histogram(data2, edges, 'Normalization', 'probability');
 h1.FaceColor = [0 0 1];
 grid on;
 
@@ -57,10 +61,12 @@ saveas(h1, "../features/true_" + feature + ".png");
 hold off
 
 edges = [0 0.26 0.51 0.76 1.0];
-h2 = histogram(data3, edges, 'Normalization', 'probability'); % data1 = red
+% data1 = red
+h2 = histogram(data3, edges, 'Normalization', 'probability'); 
 h2.FaceColor = [1 0 0];
 hold on
-h2 = histogram(data4, edges, 'Normalization', 'probability'); % data2 = blue
+% data2 = blue
+h2 = histogram(data4, edges, 'Normalization', 'probability'); 
 h2.FaceColor = [0 0 1];
 grid on;
 

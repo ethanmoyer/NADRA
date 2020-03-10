@@ -1,6 +1,6 @@
 % This function accepts the location of a resulting table (.csv) from the 
-% machine learing algoirthms prefixed with "examine_" and the name of the 
-% algorithm (either "SVM_", "RF_", or "CNN_"). It creates four arrays  
+% machine learing algoirthms prefixed with  the name of the algorithm 
+% (either "SVM_", "RF_", or "CNN_") called  "test_data". It creates arrays
 % contining the different mismatches (true/true, true/false, false/true,
 % and false/false). The result is a new table object (.csv) with
 % the four concatenated together with the prefix 'mismatched_' saved under 

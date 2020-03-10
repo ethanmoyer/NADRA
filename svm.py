@@ -2,6 +2,7 @@ import csv
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.svm import SVC
 import pandas as pd
+
 # Retrieves both the post processed training data and the post processed test data.
 taining_data_loc = str(input('Enter the location of the processed training data: '))
 if (taining_data_loc.find("processed_data") < 0 or taining_data_loc.find("train") < 0):
@@ -31,7 +32,7 @@ svclassifier = SVC(kernel='poly')
 svclassifier.fit(dataset_train, y_train)
 
 # Generates output predicitons based on test data.
-y_pred = svclassifier.predict(dataset_test)
+y_pred = svclassifier.predict(X_test)
 
 print([['true negative', 'false positive'],
 	['false negative','true positive']])
