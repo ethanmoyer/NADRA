@@ -1,4 +1,4 @@
-# VERTICALLY INTEGRATED PROJECT (VIP) REPORT: NEUROMORPHIC APPROACHES TO DNA SUBSEQUENCE AND RESTRICTION SITE ANALYSIS
+# NADRA - Neuromorphic Approaches to Dna subsequence and Restriction site Analysis
 
 ## Data Curation/Analysis
 
