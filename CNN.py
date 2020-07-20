@@ -114,7 +114,7 @@ model.add(BatchNormalization())
 
 model.add(Flatten())
 model.add(Dense(1024, activation='relu'))
-model.add(Dense(num_classes, activation='softmax')
+model.add(Dense(num_classes, activation='softmax'))
 
 # Compiles the model
 model.compile(loss='binary_crossentropy',
