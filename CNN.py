@@ -113,12 +113,12 @@ model.add(MaxPooling1D(pool_size=2, padding='same'))
 model.add(BatchNormalization())
 
 model.add(Flatten())
-model.add(Dense(1024, activation='relu'))            
+model.add(Dense(1024, activation='relu'))
 model.add(Dense(num_classes, activation='softmax')
 
 # Compiles the model
 model.compile(loss='binary_crossentropy',
-              optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy', 'binary_crossentropy'])
+				optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy', 'binary_crossentropy'])
 
 # Summarizes the layers in the model.
 model.summary()
