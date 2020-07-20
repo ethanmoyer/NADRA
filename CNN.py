@@ -119,7 +119,7 @@ model.add(Dense(1024, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 # Compiles the model
-model.compile(loss='categorical_crossentropy',
+model.compile(loss=tf.keras.losses.sparse_categorical_crossentropy(),
 				optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy', 'categorical_crossentropy'])
 
 # Summarizes the layers in the model.
