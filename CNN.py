@@ -16,7 +16,7 @@ from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv1D, MaxPooling1
 
 # Retrieves both the post processed training data, the post processed test data, and the post processed validation data.
 taining_data_location = 'processed_data/train_data.csv'
-print(f'Default reference file location: {taining_data_location}')
+#print(f'Default reference file location: {taining_data_location}')
 train_ans = str(input('Would you like to use the default training data? [yes/no]: '))
 if train_ans.lower() == 'no':
 	taining_data_location = str(input('Enter the location of the processed training data: '))
@@ -27,7 +27,7 @@ dataset_train = pd.read_csv(taining_data_location)
 
 # ---
 test_data_location = 'processed_data/test_data.csv'
-print(f'Default reference file location: {test_data_location}')
+#print(f'Default reference file location: {test_data_location}')
 test_ans = str(input('Would you like to use the default test data? [yes/no]: '))
 if test_ans.lower() == 'no':
 	test_data_location = str(input('Enter the location of the processed test data: '))
@@ -38,7 +38,7 @@ dataset_test = pd.read_csv(test_data_location)
 
 # ---
 val_data_location = 'processed_data/val_data.csv'
-print(f'Default reference file location: {val_data_location}')
+#print(f'Default reference file location: {val_data_location}')
 test_ans = str(input('Would you like to use the default validation data? [yes/no]: '))
 if test_ans.lower() == 'no':
 	val_data_location = str(input('Enter the location of the processed validation data: '))
