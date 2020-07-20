@@ -90,30 +90,31 @@ num_classes = 2
 # Make the model deeper and narrower
 model = Sequential()
 model.add(Conv1D(filters=64, kernel_size=3,activation='softplus', input_shape=(1, X_train.shape[2]),kernel_regularizer=regularizers.l2(0.01), activity_regularizer=regularizers.l1(0.01), padding='same',strides=3))
-model.add(MaxPooling1D(pool_size=2, padding='same'))
 model.add(BatchNormalization())
-model.add(Dropout(0.5))
+model.add(MaxPooling1D(pool_size=2, padding='same'))
 
 model.add(Conv1D(filters=128, kernel_size=3, activation='linear',
 			padding='same', strides=3))
-model.add(MaxPooling1D(pool_size=2, padding='same'))
 model.add(BatchNormalization())
+model.add(MaxPooling1D(pool_size=2, padding='same'))
 
 model.add(Conv1D(filters=256, kernel_size=3, activation='linear',
 			padding='same', strides=3))
-model.add(MaxPooling1D(pool_size=2, padding='same'))
 model.add(BatchNormalization())
+model.add(MaxPooling1D(pool_size=2, padding='same'))
 
 model.add(Conv1D(filters=512, kernel_size=3, activation='linear',
 			padding='same', strides=3))
-model.add(MaxPooling1D(pool_size=2, padding='same'))
 model.add(BatchNormalization())
+model.add(MaxPooling1D(pool_size=2, padding='same'))
+
 
 model.add(Conv1D(filters=1024, kernel_size=3, activation='linear',
 			padding='same', strides=3))
-model.add(MaxPooling1D(pool_size=2, padding='same'))
 model.add(BatchNormalization())
+model.add(MaxPooling1D(pool_size=2, padding='same'))
 
+model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(Dense(1024, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
