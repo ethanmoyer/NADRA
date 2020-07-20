@@ -12,6 +12,8 @@ from tensorflow.keras import regularizers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv1D, MaxPooling1D, BatchNormalization, ReLU
 
+import matplotlib as plt
+
 # ---
 
 # Retrieves both the post processed training data, the post processed test data, and the post processed validation data.
@@ -117,8 +119,8 @@ model.add(Dense(1024, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 # Compiles the model
-model.compile(loss='binary_crossentropy',
-				optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy', 'binary_crossentropy'])
+model.compile(loss='categorical_crossentropy',
+				optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy', 'categorical_crossentropy'])
 
 # Summarizes the layers in the model.
 model.summary()
