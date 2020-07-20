@@ -1,6 +1,6 @@
 # source ./venv/bin/activate
 # python3.7
-# processed_data/0.4_50000_train_data.csv
+# 
 # processed_data/test_data.csv
 # processed_data/0.5_25000_train_data.csv
 import csv
@@ -12,24 +12,40 @@ from tensorflow.keras import regularizers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv1D, MaxPooling1D, BatchNormalization, ReLU
 
+# ---
+
 # Retrieves both the post processed training data, the post processed test data, and the post processed validation data.
-taining_data_loc = 'processed_data/train_data.csv'#str(input('Enter the location of the processed training data: '))
-if (taining_data_loc.find("processed_data") < 0 or taining_data_loc.find("train") < 0):
-	print("Please enter the location of a training data set from the processed_sdata directory.")
-	exit()
-dataset_train = pd.read_csv(taining_data_loc)
+taining_data_location = 'processed_data/train_data.csv'
+print(f'Default reference file location: {taining_data_location}')
+train_ans = str(input('Would you like to use the default training data? [yes/no]: '))
+if train_ans.lower() == 'no':
+	taining_data_location = str(input('Enter the location of the processed training data: '))
+	if (taining_data_location.find("processed_data") < 0 or taining_data_location.find("train") < 0):
+		print("Please enter the location of a training data set from the processed_sdata directory.")
+		exit()
+dataset_train = pd.read_csv(taining_data_location)
 
-test_data_loc = 'processed_data/test_data.csv'#str(input('Enter the location of the processed test data: '))
-if (test_data_loc.find("processed_data") < 0 or test_data_loc.find("test") < 0):
-	print("Please enter the location of a test data set from the processed_data directory.")
-	exit()
-dataset_test = pd.read_csv(test_data_loc)
+# ---
+test_data_location = 'processed_data/test_data.csv'
+print(f'Default reference file location: {test_data_location}')
+test_ans = str(input('Would you like to use the default test data? [yes/no]: '))
+if test_ans.lower() == 'no':
+	test_data_location = str(input('Enter the location of the processed test data: '))
+	if (test_data_location.find("processed_data") < 0 or test_data_location.find("test") < 0):
+		print("Please enter the location of a test data set from the processed_data directory.")
+		exit()
+dataset_test = pd.read_csv(test_data_location)
 
-dataset_validation_loc = 'processed_data/val_data.csv'#str(input('Enter the location of the processed validation data: '))
-if (dataset_validation_loc.find("processed_data") < 0 or dataset_validation_loc.find("val") < 0):
-	print("Please enter the location of a validation data set from the processed_data directory.")
-	exit()
-dataset_validation = pd.read_csv(dataset_validation_loc)
+# ---
+val_data_location = 'processed_data/val_data.csv'
+print(f'Default reference file location: {val_data_location}')
+test_ans = str(input('Would you like to use the default validation data? [yes/no]: '))
+if test_ans.lower() == 'no':
+	val_data_location = str(input('Enter the location of the processed validation data: '))
+	if (val_data_location.find("processed_data") < 0 or val_data_location.find("val") < 0):
+		print("Please enter the location of a validation data set from the processed_data directory.")
+		exit()
+dataset_validation = pd.read_csv(val_data_location)
 
 # Segregrates outputs from both data sets.
 y_train = dataset_train['output']
@@ -98,20 +114,20 @@ model.add(BatchNormalization())
 
 model.add(Flatten())
 model.add(Dense(1024, activation='relu'))            
-model.add(Dense(num_classes, activation='softmax'))
+model.add(Dense(num_classes, activation='softmax')
 
 # Compiles the model
-model.compile(loss=tf.keras.losses.sparse_categorical_crossentropy,
-              optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy'])
+model.compile(loss='binary_crossentropy',
+              optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy', 'binary_crossentropy'])
 
 # Summarizes the layers in the model.
 model.summary()
 
 # Cross validates with validation data.
-model_train = model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs,verbose=1, validation_data=(dataset_validation, y_val))
+history = model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs,verbose=1, validation_data=(dataset_validation, y_val))
 
 # Predicts using the model on a new data set.
-y_pred = model.predict_classes(X_test)
+#y_pred = model.predict_classes(X_test)
 
 print([['true negative', 'false positive'],
 	['false negative','true positive']])
@@ -119,18 +135,27 @@ print([['true negative', 'false positive'],
 # recall = (true positive)/(total actual positive)
 # f1 = 2 * (precision * recall) / (precision + recall)
 
+
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model absolute loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.savefig('figures/test.png')
+plt.clf()
+
+
 # Prints confusion matrix.
-print(confusion_matrix(y_test_numpy, y_pred))
+#print(confusion_matrix(y_test_numpy, y_pred))
 
 # Prints classification report.
-print(classification_report(y_test_numpy, y_pred))
-
-y_pred = y_pred > 0
+#print(classification_report(y_test_numpy, y_pred))
 
 # Rewrites output and preducted values to the test data set and saves it for a file for further analysis.
-dataset_test['output'] = y_test_numpy;
-dataset_test['predicted'] = y_pred;
-dataset_test.to_csv("analysis_data/CNNs_" + test_data_loc[(test_data_loc.find('/') + 1):], index=False)
+#dataset_test['output'] = y_test_numpy;
+#dataset_test['predicted'] = y_pred;
+#dataset_test.to_csv("analysis_data/CNNs_" + test_data_loc[(test_data_loc.find('/') + 1):], index=False)
 
 print("CNNs analysis finished.")
 
